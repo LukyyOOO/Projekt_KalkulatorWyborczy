@@ -28,7 +28,7 @@ Prosta aplikacja webowa, która pozwala użytkownikom na rejestrowanie komitetó
 *   **`script.js`**: Kod JavaScript obsługujący logikę aplikacji:
 
 ## Użyte biblioteki
-Chart.js
+--------
 
 ## Autor
 
