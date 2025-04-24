@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator wyborczy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kontener">
+        <h1>Kalkulator wyborczy</h1>
+
+        <section class="sekcja-rejestracji">
+            <h2>Rejestracja komitetów</h2>
+            <form id="formularz-komitetu">
+                <div class="grupa-formularza">
+                    <label for="nazwa-komitetu">Nazwa komitetu:</label>
+                    <input type="text" id="nazwa-komitetu" placeholder="wpisz nazwę ugrupowania" required>
+                </div>
+                <div class="grupa-formularza grupa-checkbox">
+                    <input type="checkbox" id="czy-koalicja">
+                    <label for="czy-koalicja">Czy jest koalicją</label>
+                </div>
+                <div class="grupa-formularza">
+                    <label for="liczba-glosow">Ilość głosów:</label>
+                    <input type="number" id="liczba-glosow" placeholder="wpisz ilość głosów" required min="0">
+                </div>
+                <div class="grupa-przyciskow">
+                    <button type="submit" id="przycisk-dodaj-komitet">Dodaj kolejny komitet</button>
+                    <button type="button" id="przycisk-oblicz-wyniki">Sprawdź wynik procentowy</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="sekcja-zarejestrowanych">
+            <h2>Zarejestrowane komitety</h2>
+            <ul id="lista-zarejestrowanych-komitetow">
+                 <li>Brak zarejestrowanych komitetów.</li>
+            </ul>
+        </section>
+
+        <section class="sekcja-wynikow">
+            <h2>Wyniki wyborów</h2>
+            <table id="tabela-wynikow">
+                <thead>
+                    <tr>
+                        <th>LP</th>
+                        <th>Nazwa komitetu</th>
+                        <th>Próg wyborczy (%)</th>
+                        <th>Ilość głosów</th>
+                        <th>Wynik procentowy</th>
+                    </tr>
+                </thead>
+                <tbody id="cialo-tabeli-wynikow">
+                </tbody>
+            </table>
+        </section>
+
+        <footer>
+            © Bury 2025
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
