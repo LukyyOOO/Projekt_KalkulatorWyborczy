@@ -5,6 +5,10 @@ const poleLiczbaGlosow = document.getElementById('liczba-glosow');
 const listaZarejestrowanychKomitetow = document.getElementById('lista-zarejestrowanych-komitetow');
 const przyciskObliczWyniki = document.getElementById('przycisk-oblicz-wyniki');
 const cialoTabeliWynikow = document.getElementById('cialo-tabeli-wynikow');
+const przyciskEdytuj = document.getElementById('przycisk-edytuj');
+const poleFiltracji = document.getElementById('pole-filtracji');
+const przyciskSortuj = document.getElementById('przycisk-sortuj');
+const przyciskUsun = document.getElementById('przycisk-usun');
 
 let komitety = [];
 const PROG_POJEDYNCZY = 5;
@@ -46,6 +50,81 @@ formularzKomitetu.addEventListener('submit', function(event) {
     };
 
     komitety.push(nowyKomitet);
+
+
+przyciskUsun.addEventListener('click', function() {
+    const index = document.getElementById('lista-zarejestrowanych-komitetow').selectedIndex;
+    if (index !== -1) {
+        komitety.splice(index, 1);
+        listaZarejestrowanychKomitetow.innerHTML = '';
+        for (let i = 0; i < komitety.length; i++) {
+            const komitet = komitety[i];
+            const elementListy = document.createElement('li');
+            elementListy.textContent = `${i + 1}. ${komitet.nazwa} - ${komitet.glosy} głosów`;
+            listaZarejestrowanychKomitetow.appendChild(elementListy);
+        }
+    } else {
+        alert('Wybierz komitet do usunięcia!');
+    }
+});
+
+
+przyciskEdytuj.addEventListener('click', function() {
+    const index = document.getElementById('lista-zarejestrowanych-komitetow').selectedIndex;
+    if (index !== -1) {
+        const komitet = komitety[index];
+        const nazwa = prompt('Wprowadź nową nazwę komitetu:', komitet.nazwa);
+        const glosy = parseInt(prompt('Wprowadź nową liczbę głosów:', komitet.glosy));
+        if (nazwa !== null && glosy !== null) {
+            komitet.nazwa = nazwa;
+            komitet.glosy = glosy;
+            listaZarejestrowanychKomitetow.innerHTML = '';
+            for (let i = 0; i < komitety.length; i++) {
+                const komitet = komitety[i];
+                const elementListy = document.createElement('li');
+                elementListy.textContent = `${i + 1}. ${komitet.nazwa} - ${komitet.glosy} głosów`;
+                listaZarejestrowanychKomitetow.appendChild(elementListy);
+            }
+        }
+    } else {
+        alert('Wybierz komitet do edycji!');
+    }
+});
+
+
+poleFiltracji.addEventListener('input', function() {
+    const filtr = poleFiltracji.value.toLowerCase();
+    listaZarejestrowanychKomitetow.innerHTML = '';
+    for (let i = 0; i < komitety.length; i++) {
+        const komitet = komitety[i];
+        if (komitet.nazwa.toLowerCase().includes(filtr)) {
+            const elementListy = document.createElement('li');
+            elementListy.textContent = `${i + 1}. ${komitet.nazwa} - ${komitet.glosy} głosów`;
+            listaZarejestrowanychKomitetow.appendChild(elementListy);
+        }
+    }
+});
+
+
+przyciskSortuj.addEventListener('click', function() {
+    const kryterium = document.getElementById('kryterium-sortowania').value;
+    komitety.sort(function(a, b) {
+        if (kryterium === 'nazwa') {
+            return a.nazwa.localeCompare(b.nazwa);
+        } else if (kryterium === 'glosy') {
+            return a.glosy - b.glosy;
+        } else {
+            return 0;
+        }
+    });
+    listaZarejestrowanychKomitetow.innerHTML = '';
+    for (let i = 0; i < komitety.length; i++) {
+        const komitet = komitety[i];
+        const elementListy = document.createElement('li');
+        elementListy.textContent = `${i + 1}. ${komitet.nazwa} - ${komitet.glosy} głosów`;
+        listaZarejestrowanychKomitetow.appendChild(elementListy);
+    }
+});
 
     listaZarejestrowanychKomitetow.innerHTML = '';
     if (komitety.length === 0) {

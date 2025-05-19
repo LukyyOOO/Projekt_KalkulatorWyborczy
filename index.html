@@ -32,7 +32,15 @@
             </form>
         </section>
 
-        <section class="sekcja-zarejestrowanych">
+        <section class="sekcja-zarejestrowanych">            
+            <button id="przycisk-usun">Usuń komitet</button>
+            <button id="przycisk-edytuj">Edytuj komitet</button>
+            <input id="pole-filtracji" type="text" placeholder="Filtruj komitety...">
+            <select id="kryterium-sortowania">
+                    <option value="nazwa">Nazwa</option>
+                    <option value="glosy">Liczba głosów</option>
+            </select>
+            <button id="przycisk-sortuj">Sortuj komitety</button>
             <h2>Zarejestrowane komitety</h2>
             <ul id="lista-zarejestrowanych-komitetow">
                  <li>Brak zarejestrowanych komitetów.</li>
